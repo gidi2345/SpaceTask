@@ -1,6 +1,7 @@
 import * as mongoose from "mongoose";
 import Mission from '../my_functions/models/Mission.model';
-
+import {NetllifyRequestBodyInterface} from '../../types/netllifyRequestBody.interface';
+import {MissionsRequestsEnum} from "../../enums/missions.requests.enum";
 
 require("dotenv").config();
 
@@ -19,22 +20,33 @@ interface Mission {
 
 exports.handler = async function (event, context) {
     context.callbackWaitsForEmptyEventLoop = false;
-    const bodyReq: Mission = JSON.parse(event.body);
+    // @ts-ignore
+    const bodyReq: NetllifyRequestBodyInterface = JSON.parse(event.body);
+    const {type, payload} ={...bodyReq};
     try {
         console.log(`retrieved data ${event.body}`);
         const connect = await mongoose.connect(uri);
-        const mission = new Mission({     title: bodyReq.title,
-            description: bodyReq.description,
-            timeToComplete: bodyReq.timeToComplete,
-            locationString: bodyReq.locationString});
-        await mission.save();
+        switch (type) {
+            case MissionsRequestsEnum.CREATE_MISSIONS:
+                const mission = new Mission({     title: payload.title,
+                    description: payload.description,
+                    timeToComplete: payload.timeToComplete,
+                    locationString: payload.locationString});
+                await mission.save();
+                return {
+                    statusCode: 200,
+                    body: JSON.stringify({message: "save"})
+                };
+            case MissionsRequestsEnum.GET_ALL_MISSIONS:
+                return {
+                    statusCode: 200,
+                    body: await Mission.find({})
+                }
+            default:
+        }
         await connect.connection.close().then(() => {
             console.log('connection closed');
         });
-        return {
-            statusCode: 200,
-            body: JSON.stringify({message: "save"})
-        };
     }
     catch (err) {
         return {
