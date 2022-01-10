@@ -15,6 +15,7 @@ exports.handler = async function (event, context) {
     const bodyReq: any = JSON.parse(event.body);
 
     try {
+        console.log('im in function');
         await mongoose.connect(uri);
         const mission = new Mission({     title: 'df',
             description: 'df',
