@@ -1,7 +1,7 @@
 import * as mongoose from "mongoose";
 import Mission from '../my_functions/models/Mission.model';
 import {NetllifyRequestBodyInterface} from '../../types/netllifyRequestBody.interface';
-import {MissionsRequestsEnum} from "../../enums/missions.requests.enum";
+import {MissionsRequestsEnum} from "../../spaceTaskMobileApp/src/enums/missions.requests.enum";
 
 require("dotenv").config();
 

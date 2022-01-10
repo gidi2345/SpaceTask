@@ -8,7 +8,7 @@ import {
   TextInput,
   Button,
 } from 'react-native';
-import {MissionsRequestsEnum} from "../../../enums/missions.requests.enum";
+import {MissionsRequestsEnum} from "../enums/missions.requests.enum";
 
 const MissionCreationForm = ({
   title,

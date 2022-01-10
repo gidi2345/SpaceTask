@@ -10,7 +10,7 @@ import {
 import Contacts from 'react-native-contacts';
 
 import ScrollableList from '../components/List';
-import {MissionsRequestsEnum} from '../../../enums/missions.requests.enum';
+import {MissionsRequestsEnum} from '../enums/missions.requests.enum';
 
 const Missions = () => {
   const [missions, setMissions] = useState([]);
