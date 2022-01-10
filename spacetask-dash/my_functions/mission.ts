@@ -12,7 +12,7 @@ const uri = `${MONGO_PATH}/${MONGO_DB}?retryWrites=true`;
 
 exports.handler = async function (event, context) {
     context.callbackWaitsForEmptyEventLoop = false;
-    const bodyReq: any = JSON.parse(event.body);
+    //const bodyReq: any = JSON.parse(event.body);
     console.log('im in function');
     try {
         console.log('im in function');
