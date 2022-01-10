@@ -22,6 +22,10 @@ exports.handler = async function (event, context) {
             timeToComplete: 'df',
             locationString: 'df'});
         await mission.save();
+        return {
+            statusCode: 200,
+            body: JSON.stringify({message: "Hello World"})
+        };
     }
     catch (err) {
         return {
