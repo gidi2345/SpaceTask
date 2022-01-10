@@ -27,6 +27,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import ContactsManager from "./src/components/Contacts";
 import MissionCard from "./src/components/Cards";
+import MissionCreationForm from "./src/components/MissionCreationForm";
 
 const Section = ({children, title}) => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -74,7 +75,8 @@ const App =  ()  => {
 
   return (
     <View>
-        <MissionCard title={'חלוקת מזון'} description={'dsfds'} locations={'df'} timeToComplete={50}/>
+       {/* <MissionCard title={'חלוקת מזון'} description={'dsfds'} locations={'df'} timeToComplete={50}/>*/}
+        <MissionCreationForm />
         {/*<ContactsManager />*/}
     </View>
   );
