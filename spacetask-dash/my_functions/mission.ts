@@ -42,7 +42,7 @@ exports.handler = async function (event, context) {
                 console.log(missions);
                 return {
                     statusCode: 200,
-                    body: missions
+                    body: JSON.stringify(missions)
                 }
             default:
         }
