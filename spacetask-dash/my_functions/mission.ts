@@ -1,6 +1,6 @@
 import * as mongoose from "mongoose";
 import Mission from '../my_functions/models/Mission.model';
-import {NetllifyRequestBodyInterface} from '../../types/netllifyRequestBody.interface';
+import {NetllifyRequestBodyInterface} from '../../spaceTaskMobileApp/src/types/netllifyRequestBody.interface';
 import {MissionsRequestsEnum} from "../../spaceTaskMobileApp/src/enums/missions.requests.enum";
 
 require("dotenv").config();
@@ -38,9 +38,11 @@ exports.handler = async function (event, context) {
                     body: JSON.stringify({message: "save"})
                 };
             case MissionsRequestsEnum.GET_ALL_MISSIONS:
+                const missions = await Mission.find({});
+                console.log(missions);
                 return {
                     statusCode: 200,
-                    body: await Mission.find({})
+                    body: missions
                 }
             default:
         }

@@ -7,7 +7,6 @@ import {
   TextInput,
   StyleSheet,
 } from 'react-native';
-import Contacts from 'react-native-contacts';
 
 import ScrollableList from '../components/List';
 import {MissionsRequestsEnum} from '../enums/missions.requests.enum';

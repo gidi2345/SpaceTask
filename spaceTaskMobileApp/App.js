@@ -19,15 +19,12 @@ import {
 } from 'react-native';
 
 import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
+  Colors
 } from 'react-native/Libraries/NewAppScreen';
-import ContactsManager from "./src/components/Contacts";
-import MissionCard from "./src/components/Cards";
-import MissionCreationForm from "./src/components/MissionCreationForm";
+import ContactsManager from './src/components/Contacts';
+import MissionCard from './src/components/Cards';
+import MissionCreationForm from './src/components/MissionCreationForm';
+import Missions from './src/components/Missions';
 
 const Section = ({children, title}) => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -55,18 +52,7 @@ const Section = ({children, title}) => {
   );
 };
 
-const Missions = [
-    {
-        uuid: 'uuid-test-1',
-        title: 'חלוקת אוכל',
-        description: 'מחלקים אוכל',
-        timeToComplete: 32,
-        locations:[{x:2, y:3}],
-        locationsAsString:['dsd','sds']
-    }
-]
-
-const App =  ()  => {
+const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -75,9 +61,10 @@ const App =  ()  => {
 
   return (
     <View>
-       {/* <MissionCard title={'חלוקת מזון'} description={'dsfds'} locations={'df'} timeToComplete={50}/>*/}
-        <MissionCreationForm />
-        {/*<ContactsManager />*/}
+      {/* <MissionCard title={'חלוקת מזון'} description={'dsfds'} locations={'df'} timeToComplete={50}/>*/}
+      <MissionCreationForm />
+      <Missions />
+      {/*<ContactsManager />*/}
     </View>
   );
 };
