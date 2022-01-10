@@ -18,9 +18,7 @@ import {
   View,
 } from 'react-native';
 
-import {
-  Colors
-} from 'react-native/Libraries/NewAppScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import ContactsManager from './src/components/Contacts';
 import MissionCard from './src/components/Cards';
 import MissionCreationForm from './src/components/MissionCreationForm';
@@ -63,7 +61,9 @@ const App = () => {
     <View>
       {/* <MissionCard title={'חלוקת מזון'} description={'dsfds'} locations={'df'} timeToComplete={50}/>*/}
       <MissionCreationForm />
-      <Missions />
+      <View>
+        <Missions />
+      </View>
       {/*<ContactsManager />*/}
     </View>
   );

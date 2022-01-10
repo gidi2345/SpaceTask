@@ -25,7 +25,7 @@ const Item = ({title, item}) => (
 );
 
 const ScrollableList = ({data, property}) => {
-  const renderItem = ({item}) => <Item item={item} title={item[property]} />;
+  const renderItem = ({item}) => <Item  item={item} title={item[property]} />;
 
   return (
     <View>

@@ -32,7 +32,7 @@ const Missions = () => {
 
   return (
     <View>
-      <ScrollableList data={missions} property={'recordID'} />
+      <ScrollableList data={missions.reverse()} property={'recordID'} />
     </View>
   );
 };

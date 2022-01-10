@@ -17,8 +17,9 @@ const netlifyRequest = (netlifyFunctionName: string, body: NetllifyRequestBodyIn
   })
     .then(response => response.json())
     .then(json => {
-        console.log(json.body);
-      getData && getData(json.body);
+        console.log(json);
+      getData && getData(json);
+      console.log(json);
       return json;
     })
     .catch(error => {
