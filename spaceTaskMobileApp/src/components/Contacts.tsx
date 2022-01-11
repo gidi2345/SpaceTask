@@ -110,14 +110,15 @@ const Item = ({item, chooseMode}) => {
     return (
         <View style={styles.item}>
             <Text>{item?.givenName ? item?.givenName : item.title}</Text>
-            <TouchableHighlight
+            <Button
                 onPress={() =>
                     Linking.openURL(
                         `whatsapp://send?text=hello&phone=${item?.phoneNumbers[0]?.number}`,
-                    )
-                }>
-                <Text style={styles.title}>{item?.phoneNumbers[0]?.number}</Text>
-            </TouchableHighlight>
+                    )}
+                title="open mission"
+                color="#841584"
+                accessibilityLabel="Learn more about this purple button"
+            />
             {chooseMode && <Button
                 onPress={() => setNewMission({...newMission, performers: [...newMission.performers, item]})}
                 title="add"
