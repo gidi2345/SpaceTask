@@ -10,28 +10,24 @@ import {
   Linking,
 } from 'react-native';
 
-const Item = ({title, item}) => (
-  <View style={styles.item}>
-    <Text>{item?.givenName ? item?.givenName : item.title}</Text>{/*
-    <TouchableHighlight
-      onPress={() =>
-        Linking.openURL(
-          `whatsapp://send?text=hello&phone=${item?.phoneNumbers[0]?.number}`,
-        )
-      }>
-      <Text style={styles.title}>{item?.phoneNumbers[0]?.number}</Text>
-    </TouchableHighlight>*/}
-  </View>
-);
 
-const ScrollableList = ({data, property}) => {
-  const renderItem = ({item}) => <Item  item={item} title={item[property]} />;
+const ScrollableList = ({data, property, children}) => {
+  //const renderItem = ({item}) => {childrenWithProps(item)};
+
+  const childrenWithProps = ({item}) => { return React.Children.map(children, child => {
+    // Checking isValidElement is the safe way and avoids a typescript
+    // error too.
+    if (React.isValidElement(child)) {
+      return React.cloneElement(child, { item });
+    }
+    return <View key={Number(item)}>{child}</View>;
+  })};
 
   return (
     <View>
       <FlatList
         data={data}
-        renderItem={renderItem}
+        renderItem={childrenWithProps}
         keyExtractor={item => item[property]}
       />
     </View>
@@ -44,6 +40,7 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
     background: 'blue',
     backgroundColor: 'blue',
+
   },
   item: {
     backgroundColor: '#f9c2ff',

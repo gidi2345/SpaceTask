@@ -1,13 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
-
 import {
   SafeAreaView,
   ScrollView,
@@ -16,7 +7,18 @@ import {
   Text,
   useColorScheme,
   View,
+  useWindowDimensions,
 } from 'react-native';
+
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from 'recoil';
+
+import {TabView, SceneMap} from 'react-native-tab-view';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import ContactsManager from './src/components/Contacts';
@@ -24,51 +26,57 @@ import MissionCard from './src/components/Cards';
 import MissionCreationForm from './src/components/MissionCreationForm';
 import Missions from './src/components/Missions';
 
-const Section = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+const FirstRoute = () => (
+  <View style={{flex: 1, backgroundColor: '#ff4081'}}>
+    <Missions />
+  </View>
+);
+
+const SecondRoute = () => (
+  <View style={{flex: 1, backgroundColor: '#673ab7'}}>
+    <ContactsManager />
+
+  </View>
+);
+
+const ThirdRoute = () => (
+  <View style={{flex: 1, backgroundColor: 'white'}}>
+    <MissionCreationForm />
+  </View>
+);
+
+const renderScene = SceneMap({
+  first: FirstRoute,
+  second: SecondRoute,
+  third: ThirdRoute,
+});
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
+  const layout = useWindowDimensions();
+
+  const [index, setIndex] = React.useState(0);
+  const [routes] = React.useState([
+    {key: 'first', title: 'Missions'},
+    {key: 'second', title: 'Contacts'},
+    {key: 'third', title: 'Create'},
+  ]);
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
   return (
-    <View>
-      {/* <MissionCard title={'חלוקת מזון'} description={'dsfds'} locations={'df'} timeToComplete={50}/>*/}
-      <MissionCreationForm />
-      <View>
-        <Missions />
-      </View>
-      {/*<ContactsManager />*/}
-    </View>
+      <RecoilRoot>
+    <TabView
+      navigationState={{index, routes}}
+      renderScene={renderScene}
+      onIndexChange={setIndex}
+      initialLayout={{width: layout.width}}
+    />
+      </RecoilRoot>
   );
 };
-
 const styles = StyleSheet.create({
   sectionContainer: {
     marginTop: 32,

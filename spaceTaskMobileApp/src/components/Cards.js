@@ -21,14 +21,14 @@ const GeneralCard = ({children}) => {
     )
 }
 
-const  MissionCard = ({title, description, timeToComplete, locations}) => {
-
+const  MissionCard = ({item}) => {
+    const {title, description, timeToComplete, locationString } = {...item};
     return (
         <GeneralCard>
            <Text>{title}</Text>
             <Text>{description}</Text>
             <Text>{timeToComplete}</Text>
-            <Text>dsfsdf</Text>
+            <Text>{locationString}</Text>
         </GeneralCard>
     )
 }
@@ -45,9 +45,10 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-
+        backgroundColor: 'white',
         elevation: 5,
-        borderRadius: '10%'
+        borderRadius: 10,
+        margin: 5
     }
 });
 

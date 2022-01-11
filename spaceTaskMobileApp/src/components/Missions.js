@@ -10,6 +10,7 @@ import {
 
 import ScrollableList from '../components/List';
 import {MissionsRequestsEnum} from '../enums/missions.requests.enum';
+import MissionCard from "./Cards";
 
 const Missions = () => {
   const [missions, setMissions] = useState([]);
@@ -32,7 +33,9 @@ const Missions = () => {
 
   return (
     <View>
-      <ScrollableList data={missions.reverse()} property={'recordID'} />
+      <ScrollableList data={missions.reverse()} property={'recordID'}>
+        <MissionCard />
+      </ScrollableList>
     </View>
   );
 };

@@ -31,7 +31,8 @@ exports.handler = async function (event, context) {
                 const mission = new Mission({     title: payload.title,
                     description: payload.description,
                     timeToComplete: payload.timeToComplete,
-                    locationString: payload.locationString});
+                    locationString: payload.locationString,
+                    performers: payload.performers});
                 await mission.save();
                 return {
                     statusCode: 200,
