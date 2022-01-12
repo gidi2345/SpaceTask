@@ -7,19 +7,22 @@ import {
     Text,
     TextInput,
     Button,
-    StyleSheet
+    StyleSheet,
+    TouchableOpacity,
+    Image
 } from 'react-native';
 import {MissionsRequestsEnum} from "../enums/missions.requests.enum";
 import {useRecoilState, useRecoilValue} from "recoil";
 import missionCreateAtom from "../atoms/missionCreateAtom";
 import missionCreateSelector from "../atoms/selectors/missionCreateSelectors";
+import modalsAtom from "../atoms/modalsAtom";
 
 const MissionCreationForm = () => {
     const [newMission, setNewMission] = useRecoilState<any>(missionCreateAtom);
     const [modalVisible, setModalVisible] = useState(false);
+    const [modals, setModals] = useRecoilState<any>(modalsAtom);
 
     function sendFormRequest() {
-        console.log(newMission);
         netlifyRequest('mission', {type: MissionsRequestsEnum.CREATE_MISSIONS, payload: newMission});
     }
 
@@ -28,7 +31,7 @@ const MissionCreationForm = () => {
             <Modal
                 animationType="fade"
                 transparent={true}
-                visible={modalVisible}
+                visible={modals.contacts}
                 onRequestClose={() => {
                     Alert.alert("Modal has been closed.");
                     setModalVisible(!modalVisible);
@@ -40,49 +43,66 @@ const MissionCreationForm = () => {
                 justifyContent: 'center',
                 alignItems: 'center'}}>
                 <View style={{
-                  width: 300,
+                  width: '70%',
                     backgroundColor: 'white',
-                  height: 300}}>
-                    <Text>Choose PernewMissioner</Text>
-                    <Button
-                        onPress={() => setModalVisible(!modalVisible)}
-                        title="close"
-                        color="#841584"
-                        accessibilityLabel="Learn more about this purple button"
-                    />
+                  height: '70%'}}>
+                    <View style={{display: 'flex', flexDirection: 'row'}}>
+                        <View style={{display: 'flex', flex:8}}>
+                            <Text style={styles.textStyle}>Contacts</Text>
+                        </View>
+                        <View style={{display: 'flex', flex:2, justifyContent:'center', alignItems: 'center'}}>
+                            <TouchableOpacity
+                                onPress={() => setModals({...modals, contacts: !modals.contacts })}
+                            >
+                                <Image style={{width: 20, height: 20}} source={require('../assets/images/close.png')}/>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
                   <ContactsManager chooseMode={true} />
                 </View>
               </View>
 
             </Modal>
-            <Text>Create Mission</Text>
-            <Text>title</Text>
+            <View style={{display: 'flex', flexDirection: 'row'}}>
+                <View style={{display: 'flex', flex:8}}>
+                    <Text style={styles.textStyle}>Create Mission</Text>
+                </View>
+                <View style={{display: 'flex', flex:2, justifyContent:'center', alignItems: 'center'}}>
+                    <TouchableOpacity
+                        onPress={() => setModals({...modals, missionCreate: !modals.missionCreate })}
+                    >
+                        <Image style={{width: 20, height: 20}} source={require('../assets/images/close.png')}/>
+                    </TouchableOpacity>
+                </View>
+            </View>
             <TextInput
                 style={styles.input}
                 onChangeText={text => setNewMission({...newMission, title: text})}
                 value={newMission.title}
-                placeHolder="cool title"
+                onFocus={(e) => e.target.placeholder = ''}
+                placeholder="mission title"
             />
-            <Text>description</Text>
             <TextInput
                 style={styles.input}
                 onChangeText={text => setNewMission({...newMission, description: text})}
                 value={newMission.description}
-                placeHolder="cool title"
+                onFocus={(e) => e.target.placeholder = ''}
+                placeholder="mission description"
             />
             <Button
-                onPress={() => setModalVisible(!modalVisible)}
+                onPress={() => setModals({...modals, contacts: !modals.contacts })}
                 title="Choose Performer"
                 color="#841584"
+                onFocus={(e) => e.target.placeholder = ''}
                 accessibilityLabel="Learn more about this purple button"
             />
             <TextInput
                 style={styles.input}
                 onChangeText={text => setNewMission({...newMission, locationString: text})}
                 value={newMission.locationString}
-                placeHolder="location"
+                onFocus={(e) => e.target.placeholder = ''}
+                placeholder="location"
             />
-
             <Button
                 onPress={sendFormRequest}
                 title="Create Mission"
@@ -95,6 +115,7 @@ const MissionCreationForm = () => {
 
 const styles = StyleSheet.create({
     GeneralCardContainer: {
+        borderStyle:'solid',
         display: 'flex',
         flexDirection: 'column',
         shadowColor: '#000',
@@ -105,15 +126,20 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-
-        elevation: 5,
+        elevation: 2,
     },
     input: {
         height: 40,
         margin: 12,
         borderWidth: 1,
         padding: 10,
+        borderRadius: 10
     },
+    textStyle: {
+        fontSize: 28,
+        margin: 2,
+        color: 'black'
+    }
 });
 
 export default MissionCreationForm;

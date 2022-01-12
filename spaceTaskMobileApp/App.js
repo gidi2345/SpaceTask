@@ -25,6 +25,7 @@ import ContactsManager from './src/components/Contacts';
 import MissionCard from './src/components/Cards';
 import MissionCreationForm from './src/components/MissionCreationForm';
 import Missions from './src/components/Missions';
+import MainPage from "./src/pages/MainPage";
 
 const FirstRoute = () => (
   <View style={{flex: 1, backgroundColor: '#ff4081'}}>
@@ -68,12 +69,13 @@ const App = () => {
 
   return (
       <RecoilRoot>
-    <TabView
+    {/*<TabView
       navigationState={{index, routes}}
       renderScene={renderScene}
       onIndexChange={setIndex}
       initialLayout={{width: layout.width}}
-    />
+    />*/}
+        <MainPage />
       </RecoilRoot>
   );
 };

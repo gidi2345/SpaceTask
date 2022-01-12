@@ -110,21 +110,14 @@ const Item = ({item, chooseMode}) => {
     return (
         <View style={styles.item}>
             <Text>{item?.givenName ? item?.givenName : item.title}</Text>
-            <Button
-                onPress={() =>
-                    Linking.openURL(
-                        `whatsapp://send?text=hello&phone=${item?.phoneNumbers[0]?.number}`,
-                    )}
-                title="open mission"
-                color="#841584"
-                accessibilityLabel="Learn more about this purple button"
-            />
+            <Text>{item?.phoneNumbers[0]?.number}</Text>
             {chooseMode && <Button
-                onPress={() => setNewMission({...newMission, performers: [...newMission.performers, item]})}
+                onPress={() => {console.log(item); setNewMission({...newMission, performers: [item]})}}
                 title="add"
                 color="#841584"
                 accessibilityLabel="Learn more about this purple button"
             />}
+
         </View>
     )
 };

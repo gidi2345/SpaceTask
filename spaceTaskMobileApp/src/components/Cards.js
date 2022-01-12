@@ -1,5 +1,5 @@
 import React , {useState, useEffect} from 'react';
-import {StatusBar, StyleSheet, View, Text, TouchableHighlight} from 'react-native';
+import {StatusBar, StyleSheet, View, Text, Button,TouchableHighlight, Linking} from 'react-native';
 
 const Missions = [
     {
@@ -29,14 +29,17 @@ const  MissionCard = ({item}) => {
             <Text>{description}</Text>
             <Text>{timeToComplete}</Text>
             <Text>{locationString}</Text>
-            <TouchableHighlight
-                onPress={() =>
-                    Linking.openURL(
-                        `whatsapp://send?text=${title}-${description}&phone=${performers[0]?.phoneNumbers[0]?.number}`,
-                    )
-                }>
-                <Text>open mission</Text>
-            </TouchableHighlight>
+                <Button
+                    onPress={() => {
+                        console.log(performers[0]?.phoneNumbers[0]?.number);
+                        Linking.openURL(
+                            `whatsapp://send?text=${title}-${description}&phone=${performers[0]?.phoneNumbers[0]?.number}`,
+                        )}}
+                    title="open mission"
+                    color="#841584"
+                    accessibilityLabel="Learn more about this purple button"
+                />
+                <Text></Text>
         </GeneralCard>
     )
 }

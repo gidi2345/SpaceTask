@@ -40,7 +40,6 @@ exports.handler = async function (event, context) {
                 };
             case MissionsRequestsEnum.GET_ALL_MISSIONS:
                 const missions = await Mission.find({});
-                console.log(missions);
                 return {
                     statusCode: 200,
                     body: JSON.stringify(missions)

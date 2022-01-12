@@ -16,7 +16,6 @@ const Missions = () => {
   const [missions, setMissions] = useState([]);
 
   function getData(data) {
-    console.log(data);
     setMissions(data);
   }
 
