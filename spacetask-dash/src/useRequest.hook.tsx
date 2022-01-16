@@ -10,7 +10,6 @@ export const useRequest = (path: string, body?: any) => {
         }
     }
 
-    // @ts-ignore
     useEffect( () => {
         validateBody();
 
@@ -19,7 +18,7 @@ export const useRequest = (path: string, body?: any) => {
         }).catch((err: Error) => {
             setData(err);
         })
-    },[])
+    },[data,bodyRequest,validateBody])
 
     return data;
 }
