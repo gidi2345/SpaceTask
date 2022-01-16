@@ -15,7 +15,7 @@ export const useRequest = (path: string, body?: any) => {
         }).catch((err: Error) => {
             setData(err);
         })
-    },[data,bodyRequest, path])
+    },[data,bodyRequest, path,body])
 
     return data;
 }
