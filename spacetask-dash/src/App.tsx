@@ -12,12 +12,7 @@ function App() {
 
       }}>
       <div>
-          {
-              () => {
-                  console.log(data);
-                  return <div></div>
-              }
-          }
+
       </div>
       </div>
     </div>
