@@ -10,8 +10,9 @@ export const useRequest = (path: string, body?: any) => {
             setBodyRequest(JSON.stringify(body));
         }
 
-         fetch(path, bodyRequest).then((response: Response) => {
+         fetch(path, {mode: 'cors', body: bodyRequest}).then((response: Response) => {
             setData(response.json());
+            console.log('dfsdf');
         }).catch((err: Error) => {
             setData(err);
         })
