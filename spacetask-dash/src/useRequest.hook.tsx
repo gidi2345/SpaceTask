@@ -18,7 +18,7 @@ export const useRequest = (path: string, body?: any) => {
         }).catch((err: Error) => {
             setData(err);
         })
-    },[data,bodyRequest,validateBody])
+    },[data,bodyRequest,validateBody, path])
 
     return data;
 }
