@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <div style={{width:50,height:50, backgroundColor: 'grey'}} onClick={() => {
-
+            console.log(data);
       }}>
       <div>
 
