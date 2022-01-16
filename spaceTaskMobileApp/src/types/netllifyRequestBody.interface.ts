@@ -1,6 +1,6 @@
-import {MissionsRequestsEnum} from "../enums/missions.requests.enum";
+import {MissionsRequestsEnum , AddressesRequestsEnum} from "../enums/missions.requests.enum";
 
 export interface NetllifyRequestBodyInterface {
-    type: MissionsRequestsEnum;
+    type: MissionsRequestsEnum | AddressesRequestsEnum;
     payload: any;
 }

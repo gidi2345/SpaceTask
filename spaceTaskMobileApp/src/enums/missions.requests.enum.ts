@@ -3,3 +3,10 @@ export enum MissionsRequestsEnum {
     CREATE_MISSIONS = 'CREATE_MISSIONS',
     GET_ALL_MISSIONS = 'GET_ALL_MISSIONS',
 }
+
+export enum AddressesRequestsEnum {
+    ADD_ADDRESS = 'ADD_ADDRESS',
+    DELETE_ADDRESS = 'DELETE_ADDRESS',
+    GET_ALL_ADDRESSES = 'GET_ALL_ADDRESSES',
+    UPDATE_ADDRESS = 'UPDATE_ADDRESS'
+}
