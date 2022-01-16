@@ -4,14 +4,11 @@ export const useRequest = (path: string, body?: any) => {
     const [data, setData] = useState(undefined);
     const [bodyRequest, setBodyRequest] = useState(null);
 
-    function validateBody() {
+
+    useEffect( () => {
         if(!!body && typeof body !== "string") {
             setBodyRequest(JSON.stringify(body));
         }
-    }
-
-    useEffect( () => {
-        validateBody();
 
          fetch(path, bodyRequest).then((response: Response) => {
             setData(response.json());
