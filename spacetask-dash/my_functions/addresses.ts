@@ -1,9 +1,7 @@
 import * as mongoose from "mongoose";
 import Address from '../my_functions/models/Address.model';
 import {NetllifyRequestBodyInterface} from '../../spaceTaskMobileApp/src/types/netllifyRequestBody.interface';
-import {AddressesRequestsEnum, MissionsRequestsEnum} from "../../spaceTaskMobileApp/src/enums/missions.requests.enum";
-
-import {Schema} from "mongoose";
+import {AddressesRequestsEnum} from "../../spaceTaskMobileApp/src/enums/missions.requests.enum";
 
 require("dotenv").config();
 
@@ -20,21 +18,18 @@ interface Address {
 
 exports.handler = async function (event, context) {
     context.callbackWaitsForEmptyEventLoop = false;
-    // @ts-ignore
 
     const bodyReq: NetllifyRequestBodyInterface = JSON.parse(event.body);
     const {type, payload} ={...bodyReq};
     try {
-        console.log(`retrieved data ${event.body}`);
         const connect = await mongoose.connect(uri);
         switch (type) {
             case AddressesRequestsEnum.ADD_ADDRESS:
-                console.log('im here 1');
                 const addAddress = new Address({ address: payload.address, location: ''});
                 await addAddress.save();
                 return {
                     statusCode: 200,
-                    body: JSON.stringify({message: "address saved successfully"})
+                    body: JSON.stringify({message: "save"})
                 };
             case AddressesRequestsEnum.GET_ALL_ADDRESSES:
                 const getAllAddresses = await Address.find({});
