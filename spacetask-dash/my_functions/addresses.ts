@@ -21,6 +21,7 @@ interface Address {
 exports.handler = async function (event, context) {
     context.callbackWaitsForEmptyEventLoop = false;
     // @ts-ignore
+    console.log('im here');
     const bodyReq: NetllifyRequestBodyInterface = JSON.parse(event.body);
     const {type, payload} ={...bodyReq};
     try {
