@@ -6,7 +6,6 @@ export const useRequest = (path: string, body?: any) => {
 
 
     useEffect( () => {
-        console.log('he')
         if(!!body && typeof body !== "string") {
             setBodyRequest(JSON.stringify(body));
         }
@@ -16,7 +15,7 @@ export const useRequest = (path: string, body?: any) => {
         }).catch((err: Error) => {
             setData(err);
         })
-    },[])
+    },[body,path,bodyRequest])
 
     return data;
 }
