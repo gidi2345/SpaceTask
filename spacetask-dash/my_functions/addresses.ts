@@ -21,7 +21,7 @@ interface Address {
 exports.handler = async function (event, context) {
     context.callbackWaitsForEmptyEventLoop = false;
     // @ts-ignore
-    console.log('im here');
+
     const bodyReq: NetllifyRequestBodyInterface = JSON.parse(event.body);
     const {type, payload} ={...bodyReq};
     try {
@@ -29,6 +29,7 @@ exports.handler = async function (event, context) {
         const connect = await mongoose.connect(uri);
         switch (type) {
             case AddressesRequestsEnum.ADD_ADDRESS:
+                console.log('im here 1');
                 const addAddress = new Address({ address: payload.address, location: ''});
                 await addAddress.save();
                 return {
