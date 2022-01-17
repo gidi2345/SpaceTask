@@ -32,20 +32,12 @@ exports.handler = async function (event, context) {
                 await addAddress.save();
                 return {
                     statusCode: 200,
-                    headers: {
-                        'Access-Control-Allow-Origin': '*',
-                        'Content-Type': 'application/json'
-                    },
                     body: JSON.stringify({message: "address saved successfully"})
                 };
             case AddressesRequestsEnum.GET_ALL_ADDRESSES:
                 const getAllAddresses = await Address.find({});
                 return {
                     statusCode: 200,
-                    headers: {
-                        'Access-Control-Allow-Origin': '*',
-                        'Content-Type': 'application/json'
-                    },
                     body: JSON.stringify(getAllAddresses)
                 }
             default:
@@ -57,10 +49,6 @@ exports.handler = async function (event, context) {
     catch (err) {
         return {
             statusCode: 500,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json'
-            },
             body: JSON.stringify(err.message),
         };
     }

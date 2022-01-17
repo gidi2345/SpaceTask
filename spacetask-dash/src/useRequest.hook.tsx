@@ -6,17 +6,17 @@ export const useRequest = (path: string, body?: any) => {
 
 
     useEffect( () => {
+        console.log('he')
         if(!!body && typeof body !== "string") {
             setBodyRequest(JSON.stringify(body));
         }
 
-         fetch(path, {mode: 'cors', body: bodyRequest}).then((response: Response) => {
+         fetch(path, {mode: 'no-cors', body: bodyRequest}).then((response: Response) => {
             setData(response.json());
-            console.log('dfsdf');
         }).catch((err: Error) => {
             setData(err);
         })
-    },[data,bodyRequest, path,body])
+    },[])
 
     return data;
 }
