@@ -1,0 +1,116 @@
+
+.Header {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    height: 6%;
+    margin-top: 1%;
+
+}
+
+.ButtonsHeaderSection {
+    display: flex;
+    padding-right: 2%;
+    margin-left: 10;
+    margin-right: 10;
+}
+
+.LogoHeaderSection {
+    display: flex;
+    padding-left: 2%;
+    margin-left: 10;
+    margin-right: 10;
+}
+
+.GeneralComponentsHeaderSection {
+    display: flex;
+    margin-left: 10;
+    margin-right: 10;
+    flex-direction: row;
+}
+
+.ButtonsSection {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    height: 3%;
+    margin-top: 1%;
+    border-top: 1px solid #e4e5e7;
+    border-bottom: 1px solid #e4e5e7;
+}
+
+.Card {
+    display: flex;
+    flex:1;
+    flex-direction: column;
+    height: 300px;
+    width: 200px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.CardImageSection {
+    display: flex;
+    flex: 0.5;
+}
+
+.CardImage {
+    object-fit: contain;
+}
+
+.CardDetailsSection {
+    display: flex;
+    flex-direction: column;
+    flex:0.5
+}
+
+.AvatarDescription {
+    display: flex;
+    width: 100%;
+    margin: 10px;
+    flex-direction: row;
+}
+
+.columnsString {
+    margin-left: 5px;
+    margin-bottom: 3px;
+}
+
+
+.title {
+    font-style: bold;
+    font-size: 16px;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.description {
+    font-style: italic;
+    font-size: 0.5rem;
+    color: grey;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.StarsGrade {
+    display: flex;
+    height: 30px;
+    width:50px;
+    justify-content: flex-start;
+}
+
+.CardFooter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.priceDescription {
+    display: flex;
+    flex-direction: column;
+}
+
+.regularText {
+    font-size: 12px;
+}

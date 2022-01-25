@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import Contacts from 'react-native-contacts';
 
-import ScrollableList from '../components/List';
+import ScrollableList from './ScrollableList';
 import {useRecoilState} from "recoil";
 import missionCreateAtom from "../atoms/missionCreateAtom";
 

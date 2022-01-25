@@ -2,6 +2,7 @@ import  {useEffect, useState} from "react";
 
 export const useRequest = (path: string, body?: any) => {
     const [data, setData] = useState(undefined);
+    const [error, setError] = useState(undefined);
     const [bodyRequest, setBodyRequest] = useState(null);
 
 
@@ -10,13 +11,20 @@ export const useRequest = (path: string, body?: any) => {
             setBodyRequest(JSON.stringify(body));
         }
 
-         fetch(path, {mode: 'no-cors', body: bodyRequest}).then((response: Response) => {
-            setData(response.json());
+         fetch(path, {
+             method: 'POST',
+             headers: {'Content-Type': 'application/json'},
+             body: JSON.stringify(body),
+         }).then(response => response)
+             .then((response: Response) => {
+           // console.log(response);
+           // setData(response);
         }).catch((err: Error) => {
-            setData(err);
+            console.log(err);
+             setError(err);
         })
-    },[body,path,bodyRequest])
+    },[])
 
-    return data;
+    return [data, error];
 }
 

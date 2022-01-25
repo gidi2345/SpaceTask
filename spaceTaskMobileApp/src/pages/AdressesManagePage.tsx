@@ -4,29 +4,62 @@ import {
     StyleSheet,
     Modal,
     Alert,
-    Button
+    Button,
+    Text
 } from 'react-native';
 
-// @ts-ignore
-import Logo from './../assets/images/Logo5.svg';
+import useRequest from "../hooks/useRequest.hook";
+import {AddressesRequestsEnum, MissionsRequestsEnum} from "../enums/missions.requests.enum";
+import ScrollableList from '../components/ScrollableList';
+import netlifyRequest from "../utils/netlifyRequest";
 
-import Header from "../components/Header";
-import {useRecoilState} from "recoil";
-import missionCreateAtom from "../atoms/missionCreateAtom";
-import modalsAtom from "../atoms/modalsAtom";
-import ContactsManager from "../components/Contacts";
-import MissionCreationForm from "../components/MissionCreationForm";
-
-const AddressesManagePage = () => {
-    const [filterString, setFilterString] = useState('');
-    const [modalVisible, setModalVisible] = useState(false);
-    const [modals, setModals] = useRecoilState<any>(modalsAtom);
-    useEffect(() => {
-
-    }, []);
+const Address = ({item}) => {
 
     return (
-        <View style = {styles.container}>
+        <View>
+            <Text>
+                {item.address}
+            </Text>
+        </View>
+    )
+}
+
+const AddressesManagePage = () => {
+    const [data,setData] = useState([]);
+
+    useEffect(() => {
+        netlifyRequest('addresses', {type: AddressesRequestsEnum.GET_ALL_ADDRESSES, payload: {address: 'coffee'}},
+            setData);
+    }, [data]);
+
+    const addAddress = () => {
+        netlifyRequest('addresses', {type: AddressesRequestsEnum.ADD_ADDRESS, payload: {address: 'bini'}});
+    }
+
+    return (
+        <View>
+            <View>
+                <Text>Manage addresses</Text>
+                <Text>dfdsfsdf</Text>
+            </View>
+            {
+                    data?.length === 0 ?
+                        <View>
+                            <Text>you have no addresses yet, please press to add </Text>
+                            <Button title={'add'} onPress={() => addAddress() } >
+
+                            </Button>
+                        </View>
+                        :
+                        <View>
+                            <ScrollableList data={data} property={'_id'} children={undefined}>
+                                <Address  item={undefined} />
+                            </ScrollableList>
+                            <Button title={'add'} onPress={() => addAddress() } >
+
+                            </Button>
+                        </View>
+            }
         </View>
     );
 };

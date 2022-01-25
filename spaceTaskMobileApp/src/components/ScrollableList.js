@@ -1,13 +1,9 @@
-import React from 'react';
+import React , {useState} from 'react';
 import {
-  SafeAreaView,
   View,
   FlatList,
   StyleSheet,
-  Text,
   StatusBar,
-  TouchableHighlight,
-  Linking,
 } from 'react-native';
 
 
@@ -17,10 +13,11 @@ const ScrollableList = ({data, property, children}) => {
   const childrenWithProps = ({item}) => { return React.Children.map(children, child => {
     // Checking isValidElement is the safe way and avoids a typescript
     // error too.
+
     if (React.isValidElement(child)) {
       return React.cloneElement(child, { item });
     }
-    return <View key={Number(item)}>{child}</View>;
+    return <View key={ Number(item)}>{child}</View>;
   })};
 
   return (

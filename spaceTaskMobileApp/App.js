@@ -26,6 +26,8 @@ import MissionCard from './src/components/Cards';
 import MissionCreationForm from './src/components/MissionCreationForm';
 import Missions from './src/components/Missions';
 import MainPage from "./src/pages/MainPage";
+import useRequest from '../spaceTaskMobileApp/src/hooks/useRequest.hook';
+import AddressesManagePage from './src/pages/AdressesManagePage';
 
 const FirstRoute = () => (
   <View style={{flex: 1, backgroundColor: '#ff4081'}}>
@@ -67,6 +69,12 @@ const App = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+
+ /* const [data, error] = useRequest('https://angry-stonebraker-21425c.netlify.app/.netlify/functions/addresses', {
+    type: 'ADD_ADDRESS',
+    payload: { address: 'gan yavne'}
+  })*/
+
   return (
       <RecoilRoot>
     {/*<TabView
@@ -75,7 +83,8 @@ const App = () => {
       onIndexChange={setIndex}
       initialLayout={{width: layout.width}}
     />*/}
-        <MainPage />
+       {/* <MainPage />*/}
+        <AddressesManagePage />
       </RecoilRoot>
   );
 };
